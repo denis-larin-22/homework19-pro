@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const menuList = {
+            burger: [
+                {
+                    name: '🍔',
+                    time: 3000
+                },
+                {
+                    name: '🍟',
+                    time: 1000
+                },
+                {
+                    name: '🥤',
+                    time: 500
+                }
+            ],
+            chicken: [
+                {
+                    name: '🍗',
+                    time: 5000
+                },
+                {
+                    name: '🥔',
+                    time: 2000
+                },
+                {
+                    name: '🍺',
+                    time: 1500
+                }
+            ],
+            avocado: [
+                {
+                    name: '🥑',
+                    time: 3000
+                },
+                {
+                    name: '🍚',
+                    time: 5000
+                },
+                {
+                    name: '🧉',
+                    time: 2000
+                }
+            ]
+        };
+
+        const promiseCreateOrder = (menuItem) => {
+            console.log('Start coocking!');
+
+            const cookFood = ({ name, time }) => new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    (Math.ceil(Math.random() * 10) < 8) ? resolve(name) : reject(name);
+
+                }, time)
+            })
+            return Promise.any(menuItem.map(cookFood))
+        }
+
+        promiseCreateOrder(menuList.burger)
+            .then(x => console.log(x))
+            .catch(x => console.log(x))
+            .finally(() => console.log('Finish'))
+    </script>
+</body>
+
+</html>
