@@ -64,7 +64,7 @@
 
                 }, time)
             })
-            return Promise.any(menuItem.map(cookFood))
+            return Promise.allSettled(menuItem.map(cookFood))
         }
 
         promiseCreateOrder(menuList.burger)
